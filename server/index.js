@@ -7,6 +7,12 @@ const app = express();
 // Import the CORS library and assign it to the 'cors' variable
 const cors = require ("cors");
 
+let count = 0
+
+app.get('/', (req,res) =>{
+    count++
+    res.send(`Hello World! this has be visited ${count} time`);
+})
 // Middleware: Enable CORS (Cross-Origin Resource Sharing)
 app.use(cors());
 // Middleware: Parse incoming JSON data
