@@ -15,6 +15,9 @@ const InputTodo = () => {
             body: JSON.stringify(body)
         });
         console.log(response);
+        
+        //refresh and show the changes
+        window.location = "/"; 
         }catch (err) {
             console.error(err.message)
         }
