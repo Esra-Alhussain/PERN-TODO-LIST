@@ -46,7 +46,9 @@ app.get("/todos", async(req,res) => {
 app.get("/todos/:id", async (req,res) => {
     try{
         const { id } = req.params;  //extracts the value of the id parameter from the request URL's parameters
+        //SQL query to retrieve a todo with a specific ID 
         const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [id]);
+        //sent back as a JSON response to the client
         res.json(todo.rows[0])
         console.log(req.params);
     }catch (err){
@@ -55,13 +57,22 @@ app.get("/todos/:id", async (req,res) => {
 });
 
 //update a todo
-
+app.put("/todos/:id", async (req,res) => {
+    try{
+        const { id } = req.params;
+        const { description } = req.body;
+        const updateTodo = await pool.query("UPDATE todo SET description =$1 WHERE todo_id = $2", [description, id])
+        res.json("Todo was updated!")
+    }catch (err) {
+        console.error(err.message)
+    }
+});
 //deletee a todo
 
 
 // Start the server and listen on port 5000
 app.listen(5000, () => {
     console.log("server has started on port 5000")
-})
+});
 
 
