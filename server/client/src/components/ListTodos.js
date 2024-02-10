@@ -3,6 +3,20 @@ import React, { Fragment, useEffect, useState } from "react";
 const ListTodos = () => {
   const [ todos, setTodos ] = useState([])
 
+  //delete function
+  const deleteTodo = async (id) => {
+    try{
+      //delete fetch requuest to delete a specific todo in our restful Api 
+      const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
+        method: "DELETE"
+      });
+
+      setTodos(todos.filter(todo => todo.todo_id !== id ))
+      console.log(deleteTodo)
+    }catch(err){
+      console.error(err.message)
+    }
+  }
   //fetch the todos data list from the server 
   const getTodos = async () => {
     try{
@@ -41,10 +55,10 @@ const ListTodos = () => {
         xample.com</td>
       </tr> */}
       { todos.map (todo => (
-        <tr>
+        <tr key = {todo.todo_id}>
           <td> { todo.description} </td>
-          <td> Edit </td>
-          <td> Delete</td>
+          <td> <button className="btn btn-dsnger">Edit </button></td>
+          <td> <button className="btn btn-danger" onClick={() => deleteTodo(todo.todo_id)}> Delete </button></td>
         </tr>
       ))}
     </tbody>
