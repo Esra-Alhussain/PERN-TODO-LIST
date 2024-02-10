@@ -1,9 +1,31 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 const ListTodos = () => {
+  const [ todos, setTodos ] = useState([])
+
+  //fetch the todos data list from the server 
+  const getTodos = async () => {
+    try{
+      const response = await fetch("http://localhost:5000/todos")
+      const jsonData = await response.json()  //parses the JSON response from the server into a JS object
+
+      console.log(jsonData)
+      //updates the todos state variable with the todo items fetched from the server
+      setTodos(jsonData)
+    }catch (err){
+      console.error(err.message)
+    }
+  }
+
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+  console.log(todos);
     return(
         <Fragment>
-              <table class="table mt-5 text-center">
+          { " " }
+        <table class="table mt-5 text-center">
     <thead>
       <tr>
         <th>Description</th>
@@ -15,8 +37,16 @@ const ListTodos = () => {
       {/* <tr>
         <td>John</td>
         <td>Doe</td>
-        <td>john@example.com</td>
+        <td>john@e
+        xample.com</td>
       </tr> */}
+      { todos.map (todo => (
+        <tr>
+          <td> { todo.description} </td>
+          <td> Edit </td>
+          <td> Delete</td>
+        </tr>
+      ))}
     </tbody>
   </table>
         </Fragment>
