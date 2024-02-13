@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Esra-Alhussain/PERN-TODO-LIST/static/css/main.f855e6bc.css",
+    "main.js": "/Esra-Alhussain/PERN-TODO-LIST/static/js/main.4884b8e3.js",
+    "index.html": "/Esra-Alhussain/PERN-TODO-LIST/index.html",
+    "main.f855e6bc.css.map": "/Esra-Alhussain/PERN-TODO-LIST/static/css/main.f855e6bc.css.map",
+    "main.4884b8e3.js.map": "/Esra-Alhussain/PERN-TODO-LIST/static/js/main.4884b8e3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.4884b8e3.js"
+  ]
+}
